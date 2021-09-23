@@ -301,3 +301,60 @@ header h1 a {
   transform: translate(0, -800px);
 }
 
+/*profile*/
+
+.mypage {
+  margin-top: 100px;
+  padding: 30px;
+  display: flex;
+}
+
+.profile-box {
+  width: 400px;
+  margin: 0 auto;
+  border: solid 1px blue;
+  background-color: #FFFFCC;
+  color: black;
+  border-radius: 10%;
+}
+
+.profile {
+  display: flex;
+  padding: 32px;
+  align-items: center;
+}
+
+.profile-box .profile div + div {
+  margin-left: 32px;
+}
+
+.profile-box h1 {
+  font-size: 24px;
+}
+
+.profile ul {
+  list-style: none;
+  display: flex;
+}
+
+.profile ul li {
+  width: 50px;
+}
+
+.profile ul li span {
+  text-align: start;
+  width: 50px;
+}
+
+.profile .icon {
+  border-radius: 50%;
+}
+
+.profile-box .follow-link ul {
+  list-style: none;
+  display: flex;
+}
+
+.profile-box .follow-link ul li{
+  margin: 20px;
+}

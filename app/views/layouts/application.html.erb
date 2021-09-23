@@ -19,7 +19,7 @@
           <ul>
             <% if user_signed_in? %>
               <li><%= link_to "Warashibe",root_path %></li>
-              <li><%= link_to "Mypage",root_path %></li>
+              <li><%= link_to "Mypage",current_user %></li>
               <li><%= link_to "Log out",destroy_user_session_path, method: :delete %> </li>
             <% else %>
               <li class="modalopen"><span>Log in</span></li>

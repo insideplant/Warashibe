@@ -1,0 +1,22 @@
+<div class="mypage">
+    <div class="profile-box">
+    <div class="profile">
+      <% @user ||= current_user %>
+      <div>
+        <%#= attachment_image_tag user, :profile_image, size: "100x100", fallback: "no_image.png", size: "100x100", class:"icon" %>
+      </div>
+      <div>
+        <h1><%= @user.name %></h1>
+        <ul>
+          <li>
+            <span class="material-icons md-dark">manage_accounts</span>
+          </li>
+          <li>
+            <span class="material-icons md-dark">photo_camera</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
