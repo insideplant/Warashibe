@@ -18,10 +18,9 @@
         <nav>
           <ul>
             <% if user_signed_in? %>
-              <li><%= link_to "Warashibe list",root_path %></li>
+              <li><%= link_to "Warashibe",root_path %></li>
               <li><%= link_to "Mypage",root_path %></li>
-              <li><%#= link_to "Bands",# %></li>
-              <li><%#= link_to "Log out",destroy_user_session_path, method: :delete %>
+              <li><%= link_to "Log out",destroy_user_session_path, method: :delete %> </li>
             <% else %>
               <li class="modalopen"><span>Log in</span></li>
               <li><%= link_to "Sign up",new_user_registration_path %></li>

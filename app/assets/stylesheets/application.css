@@ -25,6 +25,7 @@
 
 body {
   height: 100%;
+  padding-top: 64px;
 }
 
 
@@ -40,6 +41,22 @@ p{
   padding: 0;
 }
 
+/* common */
+.container{
+  margin: 0 auto;
+  width: 90%;
+}
+
+input:focus::placeholder {
+  color: #c5c5c5;
+}
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2px solid #FF9800;
+  background-color: #ffffff;
+}
 
 /* header */
 header {
@@ -185,5 +202,102 @@ header h1 a {
 .top_image {
   margin-top: 64px;
   text-align: center;
-  height: 100%;
 }
+
+/* sign-up */
+.sign-up {
+  background: #FFFFBB;
+  display: flex;
+}
+
+.sign-up .container {
+  display: flex;
+  justify-content: center;
+}
+
+.left-content {
+  width: 300px;
+}
+
+.right-content {
+  width: 300px;
+}
+
+.right-content input {
+  width: 230px;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.content {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* modal login */
+
+#login div{
+  text-align: center;
+}
+
+#login .login_input {
+  width: 230px;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.modalopen{
+  cursor: pointer;
+}
+
+#shut{
+  cursor: pointer;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  padding: 12px 0;
+  margin: 16px auto;
+}
+
+#mask {
+  background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#modal {
+  border: solid;
+  z-index: 2;
+  background: #fff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 4px;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transition: transform 0.4s;
+}
+
+#modal > p {
+  margin: 0 0 20px;
+}
+
+#mask.hidden{
+  display: none;
+}
+
+#modal.hidden{
+  transform: translate(0, -800px);
+}
+
