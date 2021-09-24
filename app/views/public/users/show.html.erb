@@ -1,22 +1,71 @@
-<div class="mypage">
+<div class="container">
+  <div class="mypage">
     <div class="profile-box">
-    <div class="profile">
-      <% @user ||= current_user %>
-      <div>
-        <%#= attachment_image_tag user, :profile_image, size: "100x100", fallback: "no_image.png", size: "100x100", class:"icon" %>
-      </div>
-      <div>
-        <h1><%= @user.name %></h1>
-        <ul>
-          <li>
-            <span class="material-icons md-dark">manage_accounts</span>
-          </li>
-          <li>
-            <span class="material-icons md-dark">photo_camera</span>
-          </li>
-        </ul>
+      <div class="profile">
+        <% @user ||= current_user %>
+        <div>
+          <%= image_tag 'default.png', size: '100x100', class:"icon" %>
+        </div>
+        <div>
+          <h1><%= @user.name %></h1>
+          <ul>
+            <li>
+              <span class="material-icons md-dark">manage_accounts</span>
+            </li>
+            <li>
+              <span class="material-icons md-dark">photo_camera</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
+    <div class="album">
+      <img id="main-image">
+
+      <ul class="thumbnails">
+      </ul>
+    </div>
+  </div>
 </div>
+
+<script>
+  {
+    const images = [
+      '/assets/pic00.png',
+      '/assets/pic01.png',
+      '/assets/pic02.png',
+      '/assets/pic03.png',
+      '/assets/pic04.png',
+      '/assets/pic05.png',
+      '/assets/pic06.png',
+      '/assets/pic07.png',
+    ];
+
+    let currentIndex = 0;
+
+    const mainImage = document.getElementById('main-image');
+    mainImage.src = images[currentIndex];
+
+    images.forEach((image, index) =>{
+      const img = document.createElement('img');
+      img.src = image;
+
+      const li = document.createElement('li');
+      if (index == currentIndex) {
+        li.classList.add('current');
+      }
+
+      li.addEventListener('click',()=>{
+        mainImage.src = image;
+        const thumbnails = document.querySelectorAll('.thumbnails > li');
+        thumbnails[currentIndex].classList.remove('current');
+        currentIndex = index;
+        thumbnails[currentIndex].classList.add('current');
+      });
+
+      li.appendChild(img);
+      document.querySelector('.thumbnails').appendChild(li);
+    });
+  }
+</script>

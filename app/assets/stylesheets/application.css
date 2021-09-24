@@ -81,6 +81,17 @@ header h1 a {
               -1px 0 0 black, 1px 0 0 black;
 }
 
+/* footer */
+#footer {
+  border-top: solid 1px lightgray;
+  padding-bottom: 10px;
+}
+
+#footer p {
+  text-align: center;
+}
+
+
 /*navbar*/
 .pc-menu nav {
   margin: 0 0 0 auto;
@@ -201,6 +212,7 @@ header h1 a {
 
 .top_image {
   margin-top: 64px;
+  margin-bottom: 64px;
   text-align: center;
 }
 
@@ -216,7 +228,8 @@ header h1 a {
 }
 
 .left-content {
-  width: 300px;
+  width: 400px;
+  text-align: center;
 }
 
 .right-content {
@@ -240,13 +253,13 @@ header h1 a {
 
 #login div{
   text-align: center;
+  margin-bottom: 20px;
 }
 
 #login .login_input {
   width: 230px;
   padding: 10px;
   font-size: 14px;
-  margin-bottom: 20px;
   border-radius: 10px;
 }
 
@@ -282,7 +295,7 @@ header h1 a {
   padding: 20px;
   border-radius: 4px;
   position: absolute;
-  top: 40px;
+  top: 100px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -307,6 +320,7 @@ header h1 a {
   margin-top: 100px;
   padding: 30px;
   display: flex;
+  justify-content: center;
 }
 
 .profile-box {
@@ -357,4 +371,43 @@ header h1 a {
 
 .profile-box .follow-link ul li{
   margin: 20px;
+}
+
+
+/* album */
+
+.album {
+  width: 300px;
+  margin: 0 auto;
+}
+
+#main-image {
+  width: 300px;
+  height: 200px;
+  vertical-align: bottom;
+  margin-bottom: 8px;
+}
+
+.album ul {
+  list-style: none;
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(5,56px);
+  gap: 5px;
+}
+
+.thumbnails li {
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.thumbnails li:hover,
+.thumbnails li.current {
+  opacity: 1;
+}
+
+.thumbnails img {
+  width: 56px;
 }
