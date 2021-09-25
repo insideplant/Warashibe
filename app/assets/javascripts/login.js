@@ -3,24 +3,25 @@
 
 {
   const modalopen = document.querySelectorAll('.modalopen');
-  const shut = document.getElementById('shut');
+  const shut = document.querySelector('.shut');
   const modal = document.getElementById('modal');
-  const mask = document.getElementById('mask');
-  
+  const modal2 = document.getElementById('modal2');
+  const mask = document.querySelector('.mask');
+
   modalopen.forEach((moda) => {
     moda.addEventListener('click',()=>{
-    modal.classList.remove('hidden');
+    (modal || modal2).classList.remove('hidden');
     mask.classList.remove('hidden');
     });
   });
-  
+
   shut.addEventListener('click',()=>{
-    modal.classList.add('hidden');
+    (modal || modal2).classList.add('hidden');
     mask.classList.add('hidden');
   });
-  
+
   mask.addEventListener('click',()=>{
-    modal.classList.add('hidden');
+    (modal || modal2).classList.add('hidden');
     mask.classList.add('hidden');
   });
 }

@@ -10,7 +10,7 @@
           <h1><%= @user.name %></h1>
           <ul>
             <li>
-              <span class="material-icons md-dark">manage_accounts</span>
+              <%= link_to edit_user_registration_path do %><span class="material-icons md-dark">manage_accounts</span><% end %>
             </li>
             <li>
               <span class="material-icons md-dark">photo_camera</span>
@@ -21,14 +21,39 @@
     </div>
 
     <div class="album">
+      <div class="modalopen">
+        wrashibe
+      </div>
       <img id="main-image">
 
       <ul class="thumbnails">
       </ul>
     </div>
   </div>
+
+  <div id="modal2" class="hidden" >
+    <h1>Warashibe アイテム</h1>
+    <p>Warashibeを開始するにあたり一番最初の交換アイテムとなります。
+    こちらのアイテムは一度決定すると二度と変更できません。</p>
+    <%= form_with model: @item do |f| %>
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, :placeholder => "Enter your Item...", autofocus: true %>
+      </div>
+      <div class="field">
+        <%= f.label :info %><br />
+        <%= f.text_area :info, :placeholder => "Enter your Item info...", autofocus: true, autocomplete: "email"  %>
+      </div>
+    <% end %>
+    <div class="shut">
+      閉じる
+    </div>
+  </div>
 </div>
 
+<div class="mask hidden"></div>
+
+<%= javascript_include_tag "login.js" %>
 <script>
   {
     const images = [
