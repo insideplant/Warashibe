@@ -2,9 +2,12 @@
   <div class="mypage">
     <div class="profile-box">
       <div class="profile">
-        <% @user ||= current_user %>
         <div>
-          <%= image_tag 'default.png', size: '100x100', class:"icon" %>
+          <% if @user.avatar?%>
+            <%= image_tag @user.image, size: '100x100', class:"icon" %>
+          <% else %>
+            <%= image_tag 'default.png', size: '100x100', class:"icon" %>
+          <% end %>
         </div>
         <div>
           <h1><%= @user.name %></h1>
@@ -24,9 +27,11 @@
       <div class="modalopen">
         wrashibe
       </div>
-      <img id="main-image">
-
-      <ul class="thumbnails">
+      <% if @uploaded_items.present? %>
+        <%= image_tag @uploaded_item.image, size: '100x100', class:"icon" %>
+      <% else %>
+        <%= image_tag 'default.png' %>
+      <% end %>
       </ul>
     </div>
   </div>
@@ -35,7 +40,18 @@
     <h1>Warashibe アイテム</h1>
     <p>Warashibeを開始するにあたり一番最初の交換アイテムとなります。
     こちらのアイテムは一度決定すると二度と変更できません。</p>
-    <%= form_with model: @item do |f| %>
+    <div id="beforeUpload">
+      <img id="cpi" src="" >
+      <span class="material-icons">image</span>
+    </div>
+    <%= form_with model: @item, url: items_path do |f| %>
+
+      <%= f.file_field :image %>
+      <%= f.hidden_field :x, id: "dataX"%>
+      <%= f.hidden_field :y, id: "dataY"%>
+      <%= f.hidden_field :width, id:"dataWidth"%>
+      <%= f.hidden_field :height, id:"dataHeight"%>
+
       <div class="field">
         <%= f.label :name %><br />
         <%= f.text_field :name, :placeholder => "Enter your Item...", autofocus: true %>
@@ -44,53 +60,25 @@
         <%= f.label :info %><br />
         <%= f.text_area :info, :placeholder => "Enter your Item info...", autofocus: true, autocomplete: "email"  %>
       </div>
+      <div class="field">
+        <%= f.submit %>
+      </div>
     <% end %>
     <div class="shut">
       閉じる
     </div>
   </div>
+
+  <div id="modal3" class="hidden" >
+    <div class="cropper-area">
+      <img id="cropper-img" src="">
+    </div>
+    <button id="crop-btn">切り抜き</button>
+  </div>
+
 </div>
 
 <div class="mask hidden"></div>
 
 <%= javascript_include_tag "login.js" %>
-<script>
-  {
-    const images = [
-      '/assets/pic00.png',
-      '/assets/pic01.png',
-      '/assets/pic02.png',
-      '/assets/pic03.png',
-      '/assets/pic04.png',
-      '/assets/pic05.png',
-      '/assets/pic06.png',
-      '/assets/pic07.png',
-    ];
-
-    let currentIndex = 0;
-
-    const mainImage = document.getElementById('main-image');
-    mainImage.src = images[currentIndex];
-
-    images.forEach((image, index) =>{
-      const img = document.createElement('img');
-      img.src = image;
-
-      const li = document.createElement('li');
-      if (index == currentIndex) {
-        li.classList.add('current');
-      }
-
-      li.addEventListener('click',()=>{
-        mainImage.src = image;
-        const thumbnails = document.querySelectorAll('.thumbnails > li');
-        thumbnails[currentIndex].classList.remove('current');
-        currentIndex = index;
-        thumbnails[currentIndex].classList.add('current');
-      });
-
-      li.appendChild(img);
-      document.querySelector('.thumbnails').appendChild(li);
-    });
-  }
-</script>
+<%= javascript_include_tag "crop_image.js" %>

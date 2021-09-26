@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
-  has_many_attached :images
+  attr_accessor :x, :y, :width, :height
   belongs_to :user
+  mount_uploader :image, ItemimageUploader
 end

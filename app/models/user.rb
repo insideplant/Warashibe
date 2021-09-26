@@ -1,8 +1,9 @@
 class User < ApplicationRecord
-  has_one_attached :image
   has_one :item, dependent: :destroy
-  
-  # Include default devise modules. Others available are:
+  accepts_nested_attributes_for :item
+  mount_uploader :avatar, AvatarUploader
+
+  # Include default devise modules. Others aviailable are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

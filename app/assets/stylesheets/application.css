@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require cropper.min.css
  *= require_self
  */
 
@@ -381,7 +382,7 @@ header h1 a {
   margin: 0 auto;
 }
 
-#main-image {
+#croppedImage {
   width: 300px;
   height: 200px;
   vertical-align: bottom;
@@ -443,4 +444,37 @@ header h1 a {
 
 #modal2.hidden{
   transform: translate(0, -800px);
+}
+
+/* cropping image */
+#modal3 {
+  border: solid;
+  z-index: 2;
+  background: #fff;
+  width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transition: transform 0.4s;
+}
+
+#modal3.hidden{
+  transform: translate(0, -600px);
+}
+
+.cropper-area img {
+  display: block;
+  max-width: 100%;
+}
+
+#beforeUpload {
+  width: 100px;
+}
+
+#beforeUpload img {
+  width: 100%;
 }

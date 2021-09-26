@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2021_09_23_120355) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "info"
+    t.integer "user_id"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_09_23_120355) do
     t.string "name"
     t.text "profile"
     t.text "taget"
+    t.string "avatar"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
