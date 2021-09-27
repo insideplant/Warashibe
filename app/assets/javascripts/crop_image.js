@@ -12,6 +12,7 @@ $(function () {
   const btn = document.getElementById('crop-btn');
   const modal3 = document.getElementById('modal3');
   const mask = document.querySelector('.mask');
+  const item_form = document.getElementById('item_form');
   let image = document.getElementById('item_image');
   let image_viw = document.getElementById('cropper-img');
 
@@ -59,9 +60,10 @@ $(function () {
       result.src = resultImgUrl;
 
       croppedCanvas.toBlob(function(b) {
-        const fileOfBlob = new File([b],fileName);
-        let formData = new FormData();
-        formData.append('item[image]', fileOfBlob);
+        console.log(b);
+        let formData = new FormData(item_form);
+        formData.append('image', b, 'picture.png');
+        console.log(formData);
       });
 
       // フォーム要素append type file input タグを追加

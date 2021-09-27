@@ -4,9 +4,15 @@
 
 
 <% @items.each do |item|%>
-  <div>
-    <%= @item.image %>
+
+<div class="flex-col2">
+  <div class="flex-child">
+    <%= image_tag item.itemimage.url %>
   </div>
+  <div class="flex-child">
+    <%= item.name %>
+  </div>
+</div>
 <% end %>
 
  <%= render "public/homes/login_modal" %>

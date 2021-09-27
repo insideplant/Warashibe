@@ -21,18 +21,36 @@
           </ul>
         </div>
       </div>
+      <div class="modalopen item_button">
+        <button>アイテム登録</button>
+      </div>
+
+      <div class="item">
+        <h3>Item Name</h3>
+        <div class="item_name">
+
+        </div>
+
+        <h3>Item info</h3>
+        <div class="item_info">
+
+        </div>
+      </div>
     </div>
 
     <div class="album">
-      <div class="modalopen">
-        wrashibe
-      </div>
       <% if @uploaded_items.present? %>
-        <%= image_tag @uploaded_item.image, size: '100x100', class:"icon" %>
+        <%= image_tag @uploaded_items.itemimage, size: '100x100', class:"icon" %>
       <% else %>
         <%= image_tag 'default.png' %>
       <% end %>
-      </ul>
+      
+      <% unless current_user?(@user) %>
+        <%= form_with(model: current_user.active_relationships.build, local: true) do |f| %>
+          <div><%= hidden_field_tag :followed_id, @user.id %></div>
+          <%= f.submit "オファーする", class: "offer_button" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
@@ -44,13 +62,13 @@
       <img id="cpi" src="" >
       <span class="material-icons">image</span>
     </div>
-    <%= form_with model: @item, url: items_path do |f| %>
-
-      <%= f.file_field :image %>
-      <%= f.hidden_field :x, id: "dataX"%>
-      <%= f.hidden_field :y, id: "dataY"%>
-      <%= f.hidden_field :width, id:"dataWidth"%>
-      <%= f.hidden_field :height, id:"dataHeight"%>
+    <div class="modal2_form">
+      <%= form_with model: @item, url: items_path, id: 'item_form' do |f| %>
+        <%= f.file_field :itemimage %>
+        <%= f.hidden_field :x, id: "dataX"%>
+        <%= f.hidden_field :y, id: "dataY"%>
+        <%= f.hidden_field :width, id:"dataWidth"%>
+        <%= f.hidden_field :height, id:"dataHeight"%>
 
       <div class="field">
         <%= f.label :name %><br />
@@ -63,7 +81,8 @@
       <div class="field">
         <%= f.submit %>
       </div>
-    <% end %>
+      <% end %>
+    </div>
     <div class="shut">
       閉じる
     </div>
