@@ -44,7 +44,7 @@
       <% else %>
         <%= image_tag 'default.png' %>
       <% end %>
-      
+
       <% unless current_user?(@user) %>
         <%= form_with(model: current_user.active_relationships.build, local: true) do |f| %>
           <div><%= hidden_field_tag :followed_id, @user.id %></div>
@@ -59,12 +59,12 @@
     <p>Warashibeを開始するにあたり一番最初の交換アイテムとなります。
     こちらのアイテムは一度決定すると二度と変更できません。</p>
     <div id="beforeUpload">
-      <img id="cpi" src="" >
       <span class="material-icons">image</span>
+      <image id="cpi" src="">
     </div>
     <div class="modal2_form">
       <%= form_with model: @item, url: items_path, id: 'item_form' do |f| %>
-        <%= f.file_field :itemimage %>
+        <%= f.file_field :item %>
         <%= f.hidden_field :x, id: "dataX"%>
         <%= f.hidden_field :y, id: "dataY"%>
         <%= f.hidden_field :width, id:"dataWidth"%>
@@ -79,9 +79,12 @@
         <%= f.text_area :info, :placeholder => "Enter your Item info...", autofocus: true, autocomplete: "email"  %>
       </div>
       <div class="field">
-        <%= f.submit %>
+        <%= f.submit '登録',id: 'submit' %>
       </div>
       <% end %>
+    </div>
+    <div id="submit2">
+      AAA
     </div>
     <div class="shut">
       閉じる
@@ -89,8 +92,8 @@
   </div>
 
   <div id="modal3" class="hidden" >
-    <div class="cropper-area">
-      <img id="cropper-img" src="">
+    <div id="cropper-area">
+      <img id="cropp-image" src="">
     </div>
     <button id="crop-btn">切り抜き</button>
   </div>
