@@ -6,7 +6,7 @@ $(function () {
   const btn = document.getElementById('crop-btn');
   const modal3 = document.getElementById('modal3');
   const mask = document.querySelector('.mask');
-  const item_image = document.getElementById('item_image');
+  const item_image = document.getElementById('item_itemimage');
   const cropper_area = document.getElementById('cropper-area');
 
   let image_viw = document.getElementById('cropper-img');
@@ -87,16 +87,19 @@ $(function () {
     });
 
   $('#submit2').on('click',function(){
+    console.log(fileName);
     console.log("AAA");
-    console.log(croppedCanvas);
+    console.log(croppedCanvas.toBlob);
     croppedCanvas.toBlob(function(blob) {
-      const blob_file = new FileReader([blob], fileName);
+      let blob_file = new File([blob], fileName,{type: "image/png"});
       let formData = new FormData();
-      formData.append('itemimage', blob_file);
-      console.log(blob);
-      console.log(blob_file);
       let item_name = document.getElementById('item_name').value;
       let item_info = document.getElementById('item_info').value;
+      formData.append('itemimage', blob_file);
+      formData.append('name', item_name);
+      formData.append('info', item_info);
+      console.log(blob);
+      console.log(blob_file);
       console.log(item_name);
 
       $.ajax({
@@ -105,7 +108,7 @@ $(function () {
         catch: false,
         dataType: 'json',
         processData: false,
-        data: { info: item_info, name: item_name, formData },
+        data: formData,
         contentType: false  
       })
       .done(function(response){

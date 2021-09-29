@@ -15,5 +15,4 @@
 //= require jquery_ujs
 //= require cropper.min.js
 //= require jquery-cropper.min.js
-//= require activestorage
 //= require turbolinks

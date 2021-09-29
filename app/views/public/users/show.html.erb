@@ -29,7 +29,7 @@
         <h3>Item Name</h3>
         <div class="item_name">
 
-        </div>
+        </div>  
 
         <h3>Item info</h3>
         <div class="item_info">
@@ -40,7 +40,7 @@
 
     <div class="album">
       <% if @uploaded_items.present? %>
-        <%= image_tag @uploaded_items.itemimage, size: '100x100', class:"icon" %>
+        <%= image_tag @uploaded_items.itemimage.file&.url, class:"icon" %>
       <% else %>
         <%= image_tag 'default.png' %>
       <% end %>
@@ -64,7 +64,7 @@
     </div>
     <div class="modal2_form">
       <%= form_with model: @item, url: items_path do |f| %>
-        <%= f.file_field :image %>
+        <%= f.file_field :itemimage %>
 
       <div class="field">
         <%= f.label :name %><br />
@@ -75,7 +75,7 @@
         <%= f.text_area :info, :placeholder => "Enter your Item info...", autofocus: true, autocomplete: "email"  %>
       </div>
       <div class="field">
-        <%= f.submit '登録',id: 'submit' %>
+        <%#= f.submit '登録',id: 'submit' %>
       </div>
       <% end %>
     </div>
@@ -99,4 +99,4 @@
 <div class="mask hidden"></div>
 
 <%= javascript_include_tag "login.js" %>
-<%= javascript_include_tag "crop_image.js" %>
+<%#= javascript_include_tag "crop_image.js" %>
