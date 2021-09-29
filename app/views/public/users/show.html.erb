@@ -63,12 +63,8 @@
       <image id="cpi" src="">
     </div>
     <div class="modal2_form">
-      <%= form_with model: @item, url: items_path, id: 'item_form' do |f| %>
-        <%= f.file_field :item %>
-        <%= f.hidden_field :x, id: "dataX"%>
-        <%= f.hidden_field :y, id: "dataY"%>
-        <%= f.hidden_field :width, id:"dataWidth"%>
-        <%= f.hidden_field :height, id:"dataHeight"%>
+      <%= form_with model: @item, url: items_path do |f| %>
+        <%= f.file_field :image %>
 
       <div class="field">
         <%= f.label :name %><br />

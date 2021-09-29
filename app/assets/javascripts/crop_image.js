@@ -6,8 +6,7 @@ $(function () {
   const btn = document.getElementById('crop-btn');
   const modal3 = document.getElementById('modal3');
   const mask = document.querySelector('.mask');
-  const item_form = document.getElementById('item_form');
-  let item_image = document.getElementById('item_image');
+  const item_image = document.getElementById('item_image');
   const cropper_area = document.getElementById('cropper-area');
 
   let image_viw = document.getElementById('cropper-img');
@@ -15,7 +14,7 @@ $(function () {
   let fileName;
 
 
-  item_form.addEventListener('change', function(e){
+  item_image.addEventListener('change', function(e){
     modal3.classList.remove('hidden');
     mask.classList.remove('hidden');
     let file = e.target.files[0];
@@ -87,12 +86,18 @@ $(function () {
       mask.classList.add('hidden');
     });
 
-  $('#submit').on('click',function(){
+  $('#submit2').on('click',function(){
     console.log("AAA");
+    console.log(croppedCanvas);
     croppedCanvas.toBlob(function(blob) {
       const blob_file = new FileReader([blob], fileName);
       let formData = new FormData();
-      formData.append('image', blob_file);
+      formData.append('itemimage', blob_file);
+      console.log(blob);
+      console.log(blob_file);
+      let item_name = document.getElementById('item_name').value;
+      let item_info = document.getElementById('item_info').value;
+      console.log(item_name);
 
       $.ajax({
         url: '/items',
@@ -100,13 +105,14 @@ $(function () {
         catch: false,
         dataType: 'json',
         processData: false,
-        data: formData,
+        data: { info: item_info, name: item_name, formData },
+        contentType: false  
       })
       .done(function(response){
         console.debug("result" + response);
       })
       .fail(function(xhr){
-        alert('失礼しました');
+        alert('失敗しました');
         console.debug("result" + xhr);
       });
     });

@@ -3,6 +3,11 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user_id = current_user.id
     @item.save
+    respond_to do |format|
+      format.html
+      format.json
+    end
+
     redirect_to user_path current_user
   end
 
@@ -11,6 +16,6 @@ class Public::ItemsController < ApplicationController
 
   private
     def item_params
-      params.require(:item).permit(:name, :info, :itemimage, :x, :y, :width, :height)
+      params.require(:item).permit(:name, :info, :itemimage)
     end
 end

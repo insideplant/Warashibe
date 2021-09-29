@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @item = Item.new
-    @uploaded_items = Item.where(id: @user.id)
+    @uploaded_items = @user.item
   end
   
   def index
